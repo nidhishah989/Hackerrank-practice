@@ -1,0 +1,61 @@
+
+
+1. Product Recommendations
+An e-commerce company has a platform that uses an algorithm to suggest products to users. it uses a graph-based approach, where each node represents a product, and the edges between them represent similarities. To avoid recommending too many similar items, they implement a modified version of Dijkstra's algorithm that takes into account the similarity score.
+
+Here is the JavaScript code snippet:
+function dijkstra(graph, startProduct) {	
+
+	let n = graph. length;
+
+	let minDistances = new Array (n). fill(Infinity);
+	let visited = new Array (n).fill(false);
+
+	minDistances[startProduct] = 0;
+
+	for (let i= 0; 1 <nj its) {
+		let minIndex = -1;
+		for (let j= 0; j< n; j++){
+			if (!visited[j] && (minIndex === -1 | | minDistances[j] < minDistances[minIndex])) 
+                        {
+				minIndex = j;
+                        }
+                } 
+		if (mindistances[minIndex] === Infinity) {
+			break;
+                }
+                
+                 visited[minIndex] = true;
+
+		for (let j = 0; j<n; j++) {
+			if (graph[minIndex][j] !== 0) {
+				let potentialDist = minDistances[minIndex] + graph[minIndex][j]
+                                if (potentialDist < minDistances[j]) {
+					minDistances[j] = potentialDist;
+                               }
+                       }
+		}
+        }
+      
+       return minDistances;
+}
+
+Given an adjacency matrix that represents the similarity scores between different products:
+
+ let graph = [
+        [0,2,0,1,0],
+        [2,0,3,0,0],
+        [0,3,0,4,0],
+        [1,0,4,0,5],
+        [0,0,0,5,0]
+    ]
+
+
+What is the output when the recommendation system calls dijkstra(graph,0); to find the least similar products to the current product(Product 0)?
+
+Pick one option
+1. [0,2,5,1,6]
+2. [0,1,4,2,7]
+3. [0,2,3,1,5]
+4. [0,2,3,1,6]
+
